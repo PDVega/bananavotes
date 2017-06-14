@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "root",
+    "username": "myyusuf",
     "password": null,
-    "database": "database_development",
+    "database": "bananavotes",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "test": {
     "username": "root",
