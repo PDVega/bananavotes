@@ -13,11 +13,10 @@
           <%- include('partials/category') %>
         </div>
         <div class="col-sm-6" style="">
-
+          <!--
           <div class="row">
             <div class="col-sm-24 col-md-16">
               <div class="thumbnail">
-                <!-- <img src="..." alt="..."> -->
                 <div class="caption">
                   <h3>Pick Bali as favourite place for vacation</h3>
                   <p> offers all kinds of travelling excitement for world wide visitors. Situated north of Kuta and south of Seminyak, Legian is less hectic but still has a lot of captivating magic</p>
@@ -35,11 +34,12 @@
               </div>
             </div>
           </div>
+        -->
 
+          <!--
           <div class="row">
             <div class="col-sm-24 col-md-16">
               <div class="thumbnail">
-                <!-- <img src="..." alt="..."> -->
                 <div class="caption">
                   <h3>Help Jim to win her heart</h3>
                   <p>Give jim banana if you support him to marry his girlfriend</p>
@@ -55,6 +55,31 @@
               </div>
             </div>
           </div>
+        -->
+        
+        <div class="row">
+          <div class="col-sm-24 col-md-16">
+            <% for(let i=0; i<topics.length; i++){ %>
+              <% var topic=topics[i] %>
+            <div class="thumbnail">
+              <div class="caption">
+                  <h3><%= topic.title %></h3>
+                  <p><%= topic.description %></p>
+                  <button class="btn btn-primary">
+                       <img src="images/bananas.png" width="24" style="margin-right: 5px;"/>
+                       <span class="badge">0</span>
+                  </button>
+                  <button class="btn btn-default">
+                       <img src="images/coconut.png" width="24" style="margin-right: 5px;" />
+                       <span class="badge">0</span>
+                  </button>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        
+
 
         </div>
 
