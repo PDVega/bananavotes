@@ -34,8 +34,6 @@ describe('beevers', function() {
 describe('beevers', function() {
   describe('findAll', function() {
     before(function(done) {
-      console.log('test findAll');
-      done()
       models.Beever.destroy({
         where:{}
       })
