@@ -14,4 +14,8 @@ router.get('/mytopics', function(req, res, next) {
   res.render('mytopics', { title: 'Topics' });
 });
 
+router.get('/topic_detail', function(req, res, next) {
+  res.render('topic_detail', { title: 'Topics' });
+});
+
 module.exports = router;

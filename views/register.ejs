@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Login</title>
+    <title>Register</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/login.css' />
 
@@ -19,17 +19,22 @@
           <section class="login-form">
             <form method="post" action="/login" role="login">
               <img src="images/bananavotes.png" class="img-responsive" alt="" />
-              <input type="email" name="email" placeholder="Email" required class="form-control input-lg" value="yusuf.hacktiv8@gmail.com" />
-
-              <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" value="abcde"/>
-
+                        
+              <input type="username" name="username" placeholder="Username" required class="form-control input-lg" value="" />
+              
+              <input type="email" name="email" placeholder="Email" required class="form-control input-lg" value="" />
+                
+              <input type="password" class="form-control input-lg" placeholder="Password" required="" value=""/>
+              
+              <input type="password" class="form-control input-lg" placeholder="Retype Password" required="" value=""/>
+              
 
               <div class="pwstrength_viewport_progress"></div>
 
 
-              <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+              <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Create account</button>
               <div>
-                <a href="/register">Create account</a> or <a href="#">reset password</a>
+                <a href="/login">Sign in</a> or <a href="#">reset password</a>
               </div>
 
             </form>
