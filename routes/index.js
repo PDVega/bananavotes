@@ -11,7 +11,39 @@ router.get('/', function(req, res, next) {
     })
     .then((topicList) => {
       res.locals.currentUser = currentUser;
-      res.render('index', { title: 'Express', topics: topicList });
+
+      const promises = [];
+      for (let i = 0; i < topicList.length; i += 1) {
+        const myPromise = new Promise(function (resolve, reject) {
+          const topic = topicList[i];
+          topic.getVotes()
+          .then((votes) => {
+            let banana = 0;
+            let coconut = 0;
+
+            for (let j = 0; j < votes.length; j += 1) {
+              const vote = votes[j];
+              if (vote.answer === 1) {
+                banana += 1;
+              } else if ((vote.answer === -1)) {
+                coconut += 1;
+              }
+            }
+
+            topic.banana = banana;
+            topic.coconut = coconut;
+
+            resolve(topic);
+          });
+        });
+
+        promises.push(myPromise);
+      }
+
+      Promise.all(promises)
+      .then((modifiedTopics) => {
+        res.render('index', { title: 'Express', topics: modifiedTopics });
+      });
     });
   } else {
     res.redirect('/login');

@@ -67,11 +67,11 @@
                   <p><%= topic.description %></p>
                   <button class="btn btn-primary" onclick="location.href='/topics/vote/<%=topic.id%>?give=banana';">
                        <img src="images/bananas.png" width="24" style="margin-right: 5px;"/>
-                       <span class="badge">0</span>
+                       <span class="badge"><%= topic.banana %></span>
                   </button>
                   <button class="btn btn-default" onclick="location.href='/topics/vote/<%=topic.id%>?give=coconut';">
                        <img src="images/coconut.png" width="24" style="margin-right: 5px;" />
-                       <span class="badge">0</span>
+                       <span class="badge"><%= topic.coconut %></span>
                   </button>
               </div>
             </div>

@@ -13,13 +13,13 @@ router.post('/add', function(req, res, next) {
       description: desc_topic
     })
     .then(() => {
-      res.redirect('/topics/add')
+      res.redirect('/')
     })
   })
 })
-  
+
 router.get('/add', function(req, res, next){
-  res.render('add_topic', { title: 'Add Topic' });    
+  res.render('add_topic', { title: 'Add Topic' });
 });
 
 router.get('/vote/:topicId', function(req, res, next) {
