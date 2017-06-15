@@ -4,7 +4,12 @@ const models = require('../models');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express'});
+  const currentUser = req.session.currentUser;
+  if (currentUser) {
+    res.render('index', { title: 'Express', currentUser });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 router.get('/login', function(req, res, next) {
@@ -62,6 +67,7 @@ router.post('/register', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res, next) {
+  req.session.currentUser
   res.redirect('/login');
 });
 
