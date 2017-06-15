@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <%- include('partials/nav_bar') %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3" style="">
+          <%- include('partials/category') %>
+        </div>
+        <div class="col-sm-6" style="">
+
+          <div class="row">
+            <div class="col-sm-24 col-md-16">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Add Topic for votes</h3>
+                </div>
+                <div class="panel-body">
+                  <form>
+                    <h1 style="color: #F0AD4E;">Give Banana!</h1>
+                    <div class="form-group">
+                      <label for="description">Description:</label>
+                      <textarea class="form-control" rows="5" name="description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button class="btn btn-default">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-3" style="">
+          <%- include('partials/last_post') %>
+        </div>
+      </div>
+    </div>
+    <%- include('partials/scripts') %>
+    <!-- <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
+  </body>
+</html>
