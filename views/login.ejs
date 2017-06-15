@@ -9,21 +9,27 @@
     <div class="container">
 
       <div class="row" id="pwd-container">
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+        </div>
 
         <div class="col-md-4">
+
           <section class="login-form">
             <form method="post" action="/login" role="login">
+
+              <% if (showError) {%>
+                  <div class="alert alert-danger" role="alert"><strong>Login Error.</strong> Please check your email and password</div>
+              <% } %>
+              
               <img src="images/bananavotes.png" class="img-responsive" alt="" />
               <input type="email" name="email" placeholder="Email" required class="form-control input-lg" value="yusuf.hacktiv8@gmail.com" />
 
-              <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" value="abcde"/>
-
+              <input type="password" name="password" class="form-control input-lg" placeholder="Password" required="" value="hello"/>
 
               <div class="pwstrength_viewport_progress"></div>
 
-
-              <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+              <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
               <div>
                 <a href="/register">Create account</a> or <a href="#">reset password</a>
               </div>
