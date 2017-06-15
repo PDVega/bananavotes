@@ -26,7 +26,9 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="/topics/add" style="background-color: #D43F3A; color: white;">Add a Vote!</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Yusuf <span class="caret"></span></a>
+
+          <% var theUser = locals.currentUser ? locals.currentUser.name : 'Beever Friend' %>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= theUser %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">My Votes</a></li>
             <li role="separator" class="divider"></li>

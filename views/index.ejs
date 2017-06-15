@@ -56,7 +56,7 @@
             </div>
           </div>
         -->
-        
+
         <div class="row">
           <div class="col-sm-24 col-md-16">
             <% for(let i=0; i<topics.length; i++){ %>
@@ -65,11 +65,11 @@
               <div class="caption">
                   <h3><%= topic.title %></h3>
                   <p><%= topic.description %></p>
-                  <button class="btn btn-primary">
+                  <button class="btn btn-primary" onclick="location.href='/topics/vote/<%=topic.id%>?give=banana';">
                        <img src="images/bananas.png" width="24" style="margin-right: 5px;"/>
                        <span class="badge">0</span>
                   </button>
-                  <button class="btn btn-default">
+                  <button class="btn btn-default" onclick="location.href='/topics/vote/<%=topic.id%>?give=coconut';">
                        <img src="images/coconut.png" width="24" style="margin-right: 5px;" />
                        <span class="badge">0</span>
                   </button>
@@ -78,7 +78,7 @@
             <% } %>
           </div>
         </div>
-        
+
 
 
         </div>

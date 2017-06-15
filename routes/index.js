@@ -10,8 +10,8 @@ router.get('/', function(req, res, next) {
       where: {}
     })
     .then((topicList) => {
-      console.log(topicList);
-      res.render('index', { title: 'Express', currentUser, topics: topicList });
+      res.locals.currentUser = currentUser;
+      res.render('index', { title: 'Express', topics: topicList });
     });
   } else {
     res.redirect('/login');
@@ -45,6 +45,7 @@ router.post('/login', function(req, res, next) {
     // console.log(beever);
     if (beever) {
       req.session.currentUser = {
+        id: beever.id,
         email: beever.email,
         name: beever.name,
       };

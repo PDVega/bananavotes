@@ -20,17 +20,25 @@
             <div class="col-sm-24 col-md-16">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Add Topic for votes</h3>
+                  <h3 class="panel-title">Your Votes</h3>
                 </div>
                 <div class="panel-body">
-                  <form>
-                    <h1 style="color: #F0AD4E;">Give Banana!</h1>
+                  <form action="/topics/vote" method="post">
+                    <% if (answer == 1) { %>
+                      <h1 style="color: #F0AD4E;">Give Banana!</h1>
+                    <% } else { %>
+                      <h1 style="color: #CC722E;">Give Coconut!</h1>
+                    <% } %>
+
+                    <input type="hidden" name="answer" value="<%= answer %>"/>
+                    <input type="hidden" name="topicId" value="<%= topicId %>"/>
+
                     <div class="form-group">
                       <label for="description">Description:</label>
                       <textarea class="form-control" rows="5" name="description"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
-                    <button class="btn btn-default">Cancel</button>
+                    <a href="/" class="btn btn-default" role="button">Cancel</a>
                   </form>
                 </div>
               </div>
