@@ -6,19 +6,16 @@ const models = require('../models');
 router.get('/', function(req, res, next) {
   const currentUser = req.session.currentUser;
   if (currentUser) {
-    res.render('index', { title: 'Express', currentUser });
+    models.Topic.findAll({
+      where: {}
+    })
+    .then((topicList) => {
+      console.log(topicList);
+      res.render('index', { title: 'Express', currentUser, topics: topicList });
+    });
   } else {
     res.redirect('/login');
   }
-  // const topics=[];
-  // topics.push({title:'jim', description:'test'}, {title:'john', description:'test 2'})
-  models.Topic.findAll({
-    where:{}
-  })
-  .then((topicList) => {
-    console.log(topicList);
-    res.render('index', { title: 'List Topic', topics:topicList });
-  })
 });
 
 router.get('/login', function(req, res, next) {
