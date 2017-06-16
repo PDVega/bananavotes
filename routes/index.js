@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const dateHelper = require('../helpers/DateHelper');
 const models = require('../models');
 
 /* GET home page. */
@@ -121,6 +122,7 @@ router.get('/', function(req, res, next) {
 
           topic.banana = banana;
           topic.coconut = coconut;
+          topic.createdAtAsString = dateHelper.convertDate(topic.createdAt)
 
           resolve(topic);
         });
