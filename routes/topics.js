@@ -4,18 +4,26 @@ const models = require ('../models');
 
 /* GET home page. */
 router.post('/add', function(req, res, next) {
+
+  const currentUser = req.session.currentUser;
+
   let title_topic = req.body.title;
   let desc_topic = req.body.description;
-  models.Topic.findOne({where:{}})
-  .then(topic => {
-    models.Topic.create({
-      title: title_topic,
-      description: desc_topic
-    })
-    .then(() => {
-      res.redirect('/')
-    })
+  models.Topic.create({
+    title: title_topic,
+    description: desc_topic
   })
+  .then((topic) => {
+    models.Beever.findOne({
+      where: { id: currentUser.id }
+    })
+    .then((beever) => {
+      beever.addTopics(topic)
+      .then(() => {
+        res.redirect('/');
+      });
+    });
+  });
 })
 
 router.get('/add', function(req, res, next){
@@ -62,7 +70,53 @@ router.post('/vote', function(req, res, next) {
 });
 
 router.get('/mytopics', function(req, res, next) {
-  res.render('mytopics', { title: 'Topics' });
+  const currentUser = req.session.currentUser;
+
+  if (currentUser) {
+    models.Topic.findAll({
+      where: {},
+      include: [{ model: models.Beever, where: { id: currentUser.id } }],
+    })
+    .then((topicList) => {
+      console.log('-----------------> ', topicList);
+      res.locals.currentUser = currentUser;
+
+      const promises = [];
+      for (let i = 0; i < topicList.length; i += 1) {
+        const myPromise = new Promise(function (resolve, reject) {
+          const topic = topicList[i];
+          topic.getVotes()
+          .then((votes) => {
+            let banana = 0;
+            let coconut = 0;
+
+            for (let j = 0; j < votes.length; j += 1) {
+              const vote = votes[j];
+              if (vote.answer === 1) {
+                banana += 1;
+              } else if ((vote.answer === -1)) {
+                coconut += 1;
+              }
+            }
+
+            topic.banana = banana;
+            topic.coconut = coconut;
+
+            resolve(topic);
+          });
+        });
+
+        promises.push(myPromise);
+      }
+
+      Promise.all(promises)
+      .then((modifiedTopics) => {
+        res.render('mytopics', { title: 'My Topics', topics: modifiedTopics });
+      });
+    });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 router.get('/topic_detail', function(req, res, next) {

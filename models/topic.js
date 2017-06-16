@@ -7,6 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Topic.hasMany(models.Vote);
+        Topic.belongsTo(models.Beever);
       }
     }
   });
