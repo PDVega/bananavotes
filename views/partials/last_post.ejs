@@ -1,13 +1,12 @@
 <ul class="list-group">
   <li class="list-group-item list-group-item-info">
-    Your last post!
+    Your last posts!
   </li>
-  <li class="list-group-item">
-    <span class="badge">1</span>
-    <a href="/topics/mytopics">Post 1</a>
-  </li>
-  <li class="list-group-item">
-    <span class="badge">4</span>
-    Post 2
-  </li>
+  <% for(let i = 0; i < locals.myLatestTopics.length; i += 1){ %>
+    <% var topic = locals.myLatestTopics[i] %>
+    <li class="list-group-item">
+      <span class="badge"><%= topic.total %></span>
+      <a href="/topics/topic_detail/<%= topic.id %>"><%= topic.title %></a>
+    </li>
+  <% } %>
 </ul>

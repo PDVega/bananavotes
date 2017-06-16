@@ -1,18 +1,15 @@
 
   <ul class="list-group">
-    <li class="list-group-item active">
-      Traveling
-    </li>
-    <li class="list-group-item">
-      Food
-    </li>
-    <li class="list-group-item">
-      Social
-    </li>
-    <li class="list-group-item">
-      Fashion
-    </li>
-    <li class="list-group-item">
-      Music
-    </li>
+
+    <% for(let i = 0; i < locals.cats.length; i += 1){ %>
+      <% var category = cats[i] %>
+      <% if(locals.query.cat !== undefined && locals.query.cat == category.id) { %>
+      <li class="list-group-item list-group-item-info">
+      <% } else { %>
+      <li class="list-group-item">
+      <% } %>
+          <a href="/?cat=<%= category.id %>"><%= category.name %></a>
+      </li>
+    <% } %>
+
   </ul>

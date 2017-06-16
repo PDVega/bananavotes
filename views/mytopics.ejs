@@ -31,7 +31,7 @@
                 <% var topic=topics[i] %>
               <div class="thumbnail">
                 <div class="caption">
-                    <h3><%= topic.title %></h3>
+                    <h3><a href="/topics/topic_detail/<%= topic.id %>"><%= topic.title %></a></h3>
                     <p><%= topic.description %></p>
 
                     <img src="/images/bananas.png" width="24" style="margin-right: 2px;"/>
