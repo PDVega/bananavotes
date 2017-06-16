@@ -20,38 +20,46 @@
             <div class="col-sm-24 col-md-16">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Add Topic for votes</h3>
+                  <h3 class="panel-title">Topic Details</h3>
                 </div>
                 <div class="panel-body">
                   <form>
                     <div class="form-group">
                       <label for="title">Title:</label>
-                      <input type="text" class="form-control" name="title">
+                      <input type="text" class="form-control" name="title" value="<%= topic.title %>">
                     </div>
                     <div class="form-group">
                       <label for="description">Description:</label>
-                      <textarea class="form-control" rows="5" name="description"></textarea>
+                      <textarea class="form-control" rows="5" name="description" ><%= topic.description %></textarea>
                     </div>
-                    <button class="btn btn-default">Back</button>
+                    <a href="/" class="btn btn-default" role="button">Back</a>
                   </form>
                 </div>
               </div>
             </div>
           </div>
 
+          <% for (var i = 0; i < votes.length; i += 1) { %>
+            <% var vote = votes[i] %>
           <div class="row">
             <div class="col-sm-24 col-md-16">
               <div class="thumbnail">
                 <!-- <img src="..." alt="..."> -->
                 <div class="caption">
-                  <h3>John Doe &nbsp;<img src="/images/bananas.png" width="40" style="margin-right: 5px;"/></h3>
-                  <p> offers all kinds of travelling excitement for world wide visitors. Situated north of Kuta and south of Seminyak, Legian is less hectic but still has a lot of captivating magic</p>
+                  <% if (vote.answer === 1) { %>
+                    <h3><%= vote.beeverName %> &nbsp;<img src="/images/bananas.png" width="40" style="margin-right: 5px;"/></h3>
+                  <% } else if (vote.answer === -1) { %>
+                    <h3><%= vote.beeverName %> &nbsp;<img src="/images/coconut.png" width="40" style="margin-right: 5px;"/></h3>
+                  <% } %>
+                  <p><%= vote.description %></p>
                   <p>
                   </p>
                 </div>
               </div>
             </div>
           </div>
+
+          <% } %>
 
         </div>
 

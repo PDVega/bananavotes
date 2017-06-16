@@ -119,8 +119,34 @@ router.get('/mytopics', function(req, res, next) {
   }
 });
 
-router.get('/topic_detail', function(req, res, next) {
-  res.render('topic_detail', { title: 'Topics' });
+router.get('/topic_detail/:topicId', function(req, res, next) {
+  const topicId = req.params.topicId;
+  models.Topic.findOne({
+    where: { id: topicId }
+  })
+  .then((topic) => {
+    topic.getVotes()
+    .then((votes) => {
+      const promises = [];
+      for (let i = 0; i < votes.length; i += 1) {
+        const vote = votes[i];
+        const myPromise = new Promise(function (resolve, reject) {
+          vote.getBeever()
+          .then((beever) => {
+            vote.beeverName = beever.name;
+            resolve(vote);
+          });
+        });
+
+        promises.push(myPromise);
+      }
+
+      Promise.all(promises)
+      .then((modiviedVotes) => {
+        res.render('topic_detail', { title: 'Topic Details', topic, votes: modiviedVotes });
+      });
+    });
+  });
 });
 
 module.exports = router;
