@@ -1,15 +1,18 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Topic = sequelize.define('Topic', {
-    title: DataTypes.STRING,
+  var Vote = sequelize.define('Vote', {
+    answer: DataTypes.INTEGER,
     description: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
-        Topic.hasMany(models.Vote);
-        Topic.belongsTo(models.Beever);
+        Vote.belongsTo(models.Beever);
       }
     }
   });
-  return Topic;
+
+  sequelize.sync({
+    force: true,
+  });
+  return Vote;
 };
